@@ -40,7 +40,11 @@ OpenStock is a CLI Inventory Management Suite written in Rust. It allows you to 
 
 ### Add an item
 ```sh
+<<<<<<< HEAD
 openinv add-item --title "Widget" --price 9.99 --quantity 10 --category "Gadgets" --condition "New"
+=======
+openinv add --title "Widget" --price 9.99 --quantity 10 --category "Gadgets" --condition "New"
+>>>>>>> 4c6ae46 (Shorten command names, update README and packaging, and improve install instructions)
 ```
 
 ### Import from CSV
@@ -50,12 +54,20 @@ openinv import --file items.csv
 
 ### List inventory (as table)
 ```sh
+<<<<<<< HEAD
 openinv list-inventory --format table
+=======
+openinv list --format table
+>>>>>>> 4c6ae46 (Shorten command names, update README and packaging, and improve install instructions)
 ```
 
 ### List inventory (as JSON)
 ```sh
+<<<<<<< HEAD
 openinv list-inventory --format json
+=======
+openinv list --format json
+>>>>>>> 4c6ae46 (Shorten command names, update README and packaging, and improve install instructions)
 ```
 
 ### Filter inventory by price and category
@@ -92,7 +104,11 @@ openinv update --file updates.csv
 
 ### Export inventory to CSV
 ```sh
+<<<<<<< HEAD
 openinv list-inventory --format csv > export.csv
+=======
+openinv list --format csv > export.csv
+>>>>>>> 4c6ae46 (Shorten command names, update README and packaging, and improve install instructions)
 ```
 
 ### Use a plugin (example: export to a custom platform)
@@ -138,4 +154,8 @@ Performance metrics are automatically saved as JSON files in the `logs/` directo
 Contributions are welcome! Please open issues or submit pull requests. See `Deployment.md` and `DeploymentChecklist.md` for deployment and development guidelines.
 
 ## License
+<<<<<<< HEAD
 MIT License 
+=======
+MIT License 
+>>>>>>> 4c6ae46 (Shorten command names, update README and packaging, and improve install instructions)

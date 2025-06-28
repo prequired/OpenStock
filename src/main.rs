@@ -1,6 +1,7 @@
 use clap::{Parser, Subcommand, ValueEnum};
 use anyhow::Result;
 use std::sync::Arc;
+use chrono;
 
 mod commands;
 mod db;
@@ -51,7 +52,7 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     /// Add a new item to inventory
-    AddItem {
+    Add {
         /// Item title
         #[arg(short, long)]
         title: String,
@@ -113,14 +114,14 @@ enum Commands {
     Update(Update),
     
     /// Delete an item by ID
-    DeleteItem {
+    Delete {
         /// Item ID to delete
         #[arg(short, long)]
         id: i32,
     },
     
     /// List inventory items
-    ListInventory {
+    List {
         /// Output format
         #[arg(short, long, value_enum)]
         format: Option<OutputFormat>,
@@ -208,23 +209,30 @@ fn main() -> Result<()> {
     // TODO: Handle subcommands
     
     match cli.command {
-        Commands::AddItem { title, price, quantity, category, condition, brand, description, upc, size, original_price, hashtags, colorway, release_date, internal_notes } => {
+        Commands::Add { title, price, quantity, category, condition, brand, description, upc, size, original_price, hashtags, colorway, release_date, internal_notes } => {
             handle_add_item(title, price, quantity, category, condition, brand, description, upc, size, original_price, hashtags, colorway, release_date, internal_notes)
         }
         Commands::Update(args) => {
             handle_update(args, &conn)
         }
-        Commands::DeleteItem { id } => {
+        Commands::Delete { id } => {
             handle_delete_item(id, &conn)
         }
-        Commands::ListInventory { format } => {
+        Commands::List { format } => {
             handle_list_inventory(&conn, format)
         }
         Commands::Import { file } => {
             handle_import(file, &conn, false)
         }
         Commands::Filter { price, category, condition, brand, fields, format } => {
-            handle_filter(&conn, price, category, condition, brand, fields, format, Some(monitor.clone()), Some(cache.clone()))
+            let result = handle_filter(&conn, price, category, condition, brand, fields, format, Some(monitor.clone()), Some(cache.clone()));
+            // Save performance report
+            let timestamp = chrono::Utc::now().format("%Y-%m-%dT%H-%M-%S");
+            let filename = format!("performance_filter_{}.json", timestamp);
+            if let Err(e) = monitor.write_performance_report(&filename) {
+                eprintln!("Failed to write performance report: {}", e);
+            }
+            result
         }
         Commands::Migrate => {
             handle_migrate()
@@ -236,7 +244,14 @@ fn main() -> Result<()> {
             handle_commands()
         }
         Commands::Stats { format } => {
-            handle_stats(&conn, format, Some(monitor.clone()), Some(cache.clone()))
+            let result = handle_stats(&conn, format, Some(monitor.clone()), Some(cache.clone()));
+            // Save performance report
+            let timestamp = chrono::Utc::now().format("%Y-%m-%dT%H-%M-%S");
+            let filename = format!("performance_stats_{}.json", timestamp);
+            if let Err(e) = monitor.write_performance_report(&filename) {
+                eprintln!("Failed to write performance report: {}", e);
+            }
+            result
         }
         Commands::Validate { file } => {
             match handle_validate(&file) {

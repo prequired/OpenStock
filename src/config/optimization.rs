@@ -4,6 +4,10 @@ use std::collections::HashMap;
 use std::time::{Duration, Instant};
 use std::sync::{Arc, Mutex};
 use chrono::{Utc, DateTime};
+use std::fs;
+use std::io::Write;
+use std::path::Path;
+use serde_json;
 
 #[derive(Debug, Clone)]
 pub struct CacheEntry {
@@ -70,6 +74,20 @@ impl PerformanceMonitor {
         }
 
         stats
+    }
+
+    /// Write performance stats to a file in the 'logs' directory as JSON
+    pub fn write_performance_report(&self, file_name: &str) -> Result<()> {
+        let stats = self.get_stats();
+        let logs_dir = Path::new("logs");
+        if !logs_dir.exists() {
+            fs::create_dir_all(logs_dir)?;
+        }
+        let file_path = logs_dir.join(file_name);
+        let json = serde_json::to_string_pretty(&stats)?;
+        let mut file = fs::File::create(&file_path)?;
+        file.write_all(json.as_bytes())?;
+        Ok(())
     }
 }
 

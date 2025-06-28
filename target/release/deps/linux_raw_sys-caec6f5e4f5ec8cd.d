@@ -1,0 +1,11 @@
+/home/edo/Documents/inventory/OpenStock/target/release/deps/liblinux_raw_sys-caec6f5e4f5ec8cd.rmeta: /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/lib.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/elf.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/errno.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/general.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/ioctl.rs
+
+/home/edo/Documents/inventory/OpenStock/target/release/deps/liblinux_raw_sys-caec6f5e4f5ec8cd.rlib: /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/lib.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/elf.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/errno.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/general.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/ioctl.rs
+
+/home/edo/Documents/inventory/OpenStock/target/release/deps/linux_raw_sys-caec6f5e4f5ec8cd.d: /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/lib.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/elf.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/errno.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/general.rs /home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/ioctl.rs
+
+/home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/lib.rs:
+/home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/elf.rs:
+/home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/errno.rs:
+/home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/general.rs:
+/home/edo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linux-raw-sys-0.9.4/src/x86_64/ioctl.rs:

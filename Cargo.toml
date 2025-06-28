@@ -23,4 +23,8 @@ strip = true
 
 [[test]]
 name = "setup"
-path = "tests/setup.test.rs" 
+path = "tests/setup.test.rs"
+
+[[bin]]
+name = "openinv"
+path = "src/main.rs" 
