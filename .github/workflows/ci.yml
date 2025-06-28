@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: 1.82
+
+    - name: Build
+      run: cargo build --release
+
+    - name: Run Tests
+      run: cargo test -- --nocapture
+      env:
+        HOME: /tmp
+
+    - name: Store Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: target/**/*.log
+
+    - name: Build Docker Image
+      run: docker build -t inventory-cli:latest .
+
+    - name: Run CLI in Docker
+      run: |
+        docker run --rm -v /tmp/.inventory:/root/.inventory inventory-cli:latest add-item --title "Test Item" --price 10.0 --quantity 5 --category sneakers --condition new
+        docker run --rm -v /tmp/.inventory:/root/.inventory inventory-cli:latest filter --price 0-20 -f id,title,price
+        docker run --rm -v /tmp/.inventory:/root/.inventory inventory-cli:latest stats --format json
+
+    - name: Store Docker Image
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-image
+        path: /tmp/.inventory 
